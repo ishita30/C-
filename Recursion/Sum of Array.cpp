@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 int sum(int input[], int n) {
-    int s=0;
     if (n==0)
     {
         return n;
