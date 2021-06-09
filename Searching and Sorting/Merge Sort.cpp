@@ -1,62 +1,82 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
-//using recursion
-void merge(int *a,int s,int e){
-    int mid = (s+e)/2;
-    
-    int i = s;
-    int j = mid+1;
-    int k = s;
-    
-    int temp[100];
-    
-    while(i<=mid && j<=e){
-        if(a[i] < a[j]){
-            temp[k++] = a[i++];
+void merge(int x[],int y[],int input[],int s,int e)
+{
+    int mid=(s+e)/2;
+    int i=s;
+    int j=mid+1;
+    int k=s;
+    while(i<=mid && j<=e)
+    {
+        if(x[i]>y[j])
+        {
+            input[k]=y[j];
+            j++;
+            k++;
         }
-        else{
-            temp[k++] = a[j++];
+        else {
+            input[k]=x[i];
+            i++;
+            k++;
+            
         }
     }
-    while(i<=mid){
-        temp[k++] = a[i++];
+    while(i<=mid)
+    {
+        input[k]=x[i];
+        i++;      
+        k++;
+        
     }
-    while(j<=e){
-        temp[k++]  = a[j++];
+    while(j<=e)
+    {
+        input[k]=y[j];
+        j++;
+        k++;
+        
     }
-    
-    //We need to copy all element to original arrays
-    for(int i=s;i<=e;i++){
-        a[i] = temp[i];
-    }
-    
     
 }
-
-void mergeSort(int a[],int s,int e){
-    //Base case - 1 or 0 elements
-    if(s>=e){
+void mergesort(int input[],int s,int e)
+{
+    
+    if(s>=e)
+    {
         return;
     }
-    
-    //Follow 3 steps
-    //1. Divide
-    int mid = (s+e)/2;
-    
-    //Recursively the arrays - s,mid and mid+1,e
-    mergeSort(a,s,mid);
-    mergeSort(a,mid+1,e);
-    
-    //Merge the two parts
-    merge(a,s,e);
+    int mid=(s+e)/2;
+    //creating 2 arrays
+    int x[1000],y[1000];
+    for(int i=0;i<=mid;i++)
+    {
+        x[i]=input[i];
+    }
+    for(int i=mid+1;i<=e;i++)
+    {
+        y[i]=input[i];
+    }
+    mergesort(x,s,mid);
+    mergesort(y,mid+1,e);
+    merge(x,y,input,s,e);
 
 }
-int main(){
-  int a[] = {7,3,10,5,6,2,-5};
-  mergeSort(a,0,6);
 
-  for(int i=0;i<7;i++){
-    cout<<a[i]<<" ";
-  }
-  return 0;
+int main()
+{
+    int n;
+    cin>>n;
+    int input[1000];
+    for(int i=0;i<n;i++)
+    {
+        cin>>input[i];
+    }
+    mergesort(input,0,n-1);
+    for(int i=0;i<n;i++)
+    {
+        cout<<input[i]<<" ";
+    }
+    
+    
 }
+
+
