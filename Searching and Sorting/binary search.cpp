@@ -22,6 +22,9 @@ int binarySearch(int *input, int n, int val)
     }
    return -1;
 }
+
+//Recursive
+
 int main()
 {
 
