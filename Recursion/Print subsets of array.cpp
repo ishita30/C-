@@ -1,30 +1,34 @@
 #include <iostream>
 using namespace std;
-void print(int input[], int size,int output[],int m){
-    if (size==0){
-        for (int i=0;i<m;i++){
-        cout<< output[i]<<" ";
-        
-    } cout<<endl;
+void helper(int input[],int size,int output[],int outputsize)
+{
+    if(size==0)
+    {
+        for(int i=0;i<=outputsize-1;i++)
+        {
+            cout<<output[i]<<" "; 
+            
+        }
+        cout<<endl;
         return;
+       
     }
-       print( input+1, size-1, output, m);
-
-      int  output1[1000];
-       for (int i=0;i<m;i++){
-           output1[i]= output[i];
-       }
-      output1[m]=input[0];
-
-     print( input+1, size-1, output1, m+1);
-    return;
+    helper(input+1,size-1,output,outputsize);//when input[0] not included
+    int newoutput[10000],i;
+    for( i=0;i<=outputsize-1;i++)
+{
+    newoutput[i]=output[i];//copying contents of output array into newarray
+   
+    
 }
-
+ newoutput[i]=input[0];//copying 1st input element at last place of newoutput array
+ helper(input+1,size-1,newoutput,outputsize+1); //outputsize will increment by 1 as we added input[0].    
+    
+    
+}
 void printSubsetsOfArray(int input[], int size) {
-	
-    int output[1000];
-    int m=0;
-    print( input, size, output, m);
+    int output[10000];
+    helper(input,size,output,0);
 }
 
 int main() {
