@@ -7,14 +7,14 @@ class Node {
 
 	Node(int data) {
 		this -> data = data;
-		next = NULL;
+		this -> next = NULL;
 	}
 };
 //Printing a linked list
 void print(Node *head)
 {
     Node * temp= head;
-    while(temp != NUll) // not head->next as then last node won't be printed
+    while(temp != NULL) // not head->next as then last node won't be printed
     {
         cout<<temp->data<<" ";
         temp= temp->next;
