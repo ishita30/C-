@@ -20,3 +20,4 @@ int main() {
     replaceCharacter(input, c1, c2);
     cout << input << endl;
 }
+
